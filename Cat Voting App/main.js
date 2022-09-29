@@ -7,20 +7,15 @@ let curr_index = 0;
 let dislikeCount = 0;
 let likeCount = 0;
 
-// let catArray;
 
-// fetch(cat_url)
-//   .then((response) => response.json())
-//   .then((data) => (catArray = data));
-
+// Function to get data from api
 async function get_data() {
   const response = await fetch(cat_url);
   const data = await response.json();
   return data;
 }
 
-// document.getElementById("myBtn").disabled = true;
-
+// Function to go to the next image
 function next_image(cat_array) {
   curr_index++;
   if (curr_index === cat_array.length) {
@@ -32,11 +27,13 @@ function next_image(cat_array) {
   cat_img.src = cat_array[curr_index]["url"];
 }
 
+// Function vote 'NO'
 function dislikes(cat_array) {
     dislikeCount++
     next_image(cat_array);
 }
 
+// Function vote 'YES'
 function likes(cat_array) {
     likeCount++;
     next_image(cat_array);
@@ -49,4 +46,3 @@ function likes(cat_array) {
   yes_btn.addEventListener("click", () => likes(cat_array));
   no_btn.addEventListener("click", () => dislikes(cat_array));
 })();
-// const cat_array = await get_data(
